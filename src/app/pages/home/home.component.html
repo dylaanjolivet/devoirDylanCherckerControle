@@ -1,0 +1,41 @@
+<ActionBar title="Accueil" icon="" class="action-bar">
+</ActionBar>
+
+<StackLayout class="mt-20 text-center">
+  <android>  
+    <SearchBar class="bg-green-500 text-green-500" hint="Search hint" :text="searchPhrase" @textChange="onTextChanged" @submit="onSubmit" />
+       <ListView items="{{results}}"  itemTap="searchTap">
+        <ListView.itemTemplate>
+          <Label text="{{label}}" textWrap="true" />
+        </ListView.itemTemplate>
+      </ListView>
+    </StackLayout>
+  </android>
+
+  <Label text="&#xf002;" textWrap="true" class="mb-4 text-gray-300 text-8xl
+  fas">
+</Label>
+  <Label text="Recherchez une entreprise" textWrap="true" class="text-2xl fontbold
+  text-gray-300">
+</Label>
+  </StackLayout>
+
+<StackLayout class="p-12">
+
+  <StackLayout class="p-4 bg-gray-100 rounded-lg">
+    <StackLayout class="mb-6">
+      <Label text="SIRET :" textWrap="true" class="font-semibold"></Label>
+      <Label [text]="company.etablissement.siret" textWrap="true" *ngIf="company"></Label>
+    </StackLayout>
+    <StackLayout class="mb-6">
+      <Label text="Nom :" textWrap="true" class="font-semibold"></Label>
+      <Label [text]="company.etablissement.unite_legale.denomination" textWrap="true" *ngIf="company"></Label>
+    </StackLayout>
+    <StackLayout class="mb-6">
+      <Label text="Commune :" textWrap="true" class="font-semibold"></Label>
+      <Label [text]="company.etablissement.libelle_commune" textWrap="true" *ngIf="company"></Label>
+    </StackLayout>
+  </StackLayout>
+
+  <Button text="Rechercher" (tap)="searchCompany()" class="w-1/2 p-4 mt-16 text-lg font-semibold text-white bg-green-500 rounded-lg"></Button>
+</StackLayout>
